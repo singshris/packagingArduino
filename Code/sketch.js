@@ -27,7 +27,7 @@ let yourName = '';
 let sourceSerif;
 
 function preload(){
-sourceSerif = loadFont("SourceSerif4-Light.ttf");
+sourceSerif = loadFont("SourceSerif4_18pt-Regular.ttf");
 }
 
 function setup() {
@@ -48,21 +48,21 @@ function gotData(data) {
     let controls = select(".controls");
     let inputSection = createDiv();
     // Create a label for the input field
-    let label = createElement('h6'," Start here");
+    let label = createElement('h6',"YOUR NAME");
     label.parent(inputSection);
     inputSection.parent(controls)
    
     inputSection.class("inputSection");
-    textInput = createInput("     FIRST NAME");
+    textInput = createInput(" ");
     textInput.changed(nameLabel);
     textInput.parent(inputSection);
     textInput.class("textInput");
 
     let sliderSection = createDiv();
     sliderSection.parent(controls)
-    // sliderSection.
+    // sliderSection
     sliderSection.class("sliderSection")
-    indexLabel = createElement('h6', "Explore the Arduino board collection")
+    indexLabel = createElement('h6', "YOUR BOARD MODEL")
     indexLabel.parent(sliderSection);
     indexSlider = createSlider(0, 14, 1);
     indexSlider.changed(makePackage);
@@ -73,7 +73,7 @@ function gotData(data) {
     buttonSection.parent(controls);
     buttonSection.class("buttonSection");
 
-    let buttonLabel = createElement('h6', 'Try a different design')
+    let buttonLabel = createElement('h6', 'YOUR DESIGN')
     buttonLabel.parent(buttonSection);
     generateButton = createButton('GENERATE');
     generateButton.mousePressed(makePackage);
