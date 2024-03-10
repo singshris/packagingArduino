@@ -2,11 +2,11 @@ html, body, body *{
   margin: 0;
   padding: 0;
 }
+
 canvas {
 box-shadow:#e1dadf;
+background: var(--color-body-text);
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
 
 @font-face {
   font-family: 'Source-Serif-Pro' ;
@@ -14,9 +14,9 @@ box-shadow:#e1dadf;
 }
 
 :root {
-  --color-body-text: #191516;
-  --color-body: #ffffff;
-  --color-bg: #FFFBF2;
+  --color-body-text: #1C1018;
+  --color-body: #FFFBF2;
+  --color-bg: #FCFFEB;
 }
 
 :root {
@@ -43,27 +43,37 @@ box-shadow:#e1dadf;
   --font-size-input: 1rem;
 }
 
+main{
+  height: 100vh;
+  width: 60vw;
+  background: var(--color-body-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 body{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  color: var(--color-body-text);
-  font-size: var(--font-size-body);
-  background: var(--color-bg);
   height: 100vh;
+  width: 100vw;
+  min-width: 50vw;
+  font-size: var(--font-size-body);
+  overflow: hidden;
 }
 
 
 .instructions{
   display: flex;
-  justify-content: center;
-  width: 30vw;
-  height: 50vh;
-  gap: 4em;
   flex-direction: column;
-  /* background: #50B2C0 */
+  justify-content: center;
+  padding: 5rem;
+  height: 100vh;
+  width: 40vw;
+  gap: 4em;
+  color: var(--color-body-text);
 }
 
 .onlyText{
@@ -71,30 +81,29 @@ body{
   flex-direction: column;
   justify-self: space-evenly;
   gap: 2rem;
+  width: 75%;
 }
 
 h2{
   font-size: var(--font-size-heading-1);
   line-height: 88%;
-  width: 80%;
-  font-weight: 350;
+  font-weight: 400;
   font-family: Source-Serif-Pro;
 }
 
 h3{
   font-size: var(--font-size-heading-2);
-  width: 80%;
   font-family: Source-Serif-Pro;
   line-height: 110%;
   font-weight: 400;
 }
 
 h5{
-  font-size: var(--font-size-body-small);
-  width: 80%;
+  font-size: var(--font-size-body-medium);
   line-height: 130%;
   font-family: Source-Serif-Pro;
   font-weight: 400;
+  font-optical-sizing: 16;
 }
 
 .controls{
@@ -104,13 +113,15 @@ h5{
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  font-weight: 200;
+  font-weight: 300;
   font-family: Source-Serif-Pro;
 }
 
 h6{
  color:var(--color-body-text);
- font-size: var(--font-size-body-small);
+ font-size: var(--font-size-body-medium);
+ font-family: Source-Serif-Pro;
+ font-weight: 400;
  margin-bottom: 0.8rem;
 }
 
@@ -119,10 +130,14 @@ h6{
   outline: none;
   background: none;
   padding: 0.8em;
-  border-radius: 10px;
   border: 2px solid;
   border-color: var(--color-body-text);
   color: var(--color-body-text);
+  height: var(--font-size-button-medium);
+  font-family: Origin;
+  font-weight: 600;
+  letter-spacing: 1%;
+  font-size: var(--font-size-button-large);
 }
 
 .inputSection{
@@ -133,34 +148,35 @@ h6{
 .sliderSection{
   display: flex;
   flex-direction: column;
-}
-
-.buttonSection{
-  display:flex;
-  flex-direction: column;
+  width: 80%;
 }
 
 .indexSlider {
   -webkit-appearance: none; 
+   height: var(--font-size-button-medium);
    appearance: none;
-   height: 20px; 
-   border-radius: 5px;
-   background-color: var(--color-body-text);
+   border: 2px solid;
+   border-color: var(--color-body-text);
  }
- 
- .indexSlider::-webkit-slider-thumb:hover {
-   background-color: #3f3c3e;
-   transition-duration: 0.5s;
- }
+
 
  .indexSlider::-webkit-slider-thumb {
   -webkit-appearance: none; 
   appearance: none;
   background:#201E1F;
-  width: 15px; 
-  height: 15px;
+  width: var(--font-size-body-tiny);
+  height: var(--font-size-body-larger);
   cursor: pointer; 
-  border-radius: 50%;
+}
+
+.indexSlider::-webkit-slider-thumb:hover {
+  background-color: #3f3c3e;
+  transition-duration: 0.5s;
+}
+
+.buttonSection{
+  display:flex;
+  flex-direction: column;
 }
 
 .buttonGen{
@@ -169,19 +185,18 @@ h6{
   background: none;
   width: 10em;
   cursor: pointer;
-  padding: 0.8em;;
-  border-radius: 10px;
-  background-color:  #FEEFDD;
+  padding: 0.8em;
   border: 2px solid;
   border-color: #201E1F;
   color: var(--color-body-text);
+  font-weight: 400;
+  letter-spacing: 1%;
+  font-size: var(--font-size-button-large);
 }
 
 .buttonGen:hover{
   background: #201E1F;
-  color: var(--color-body-text);
-  border: 2px solid;
-  border-color: #FEEFDD;
+  color: var(--color-bg);
   transition-duration: 0.5s;
 }
 

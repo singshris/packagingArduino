@@ -11,7 +11,7 @@ let newqVertex; //vertex
 let nextPoint;
 
 // save your sheet ID and name of the tab as variables for use
-let sheetID = "1nCU1F2b95B7Q6nvter0rGSlAIavyHjx-PcrlM0YKumU";
+let sheetID = "1dCAamYNmoavU6fJ5kLlNo_z2a2FApXb_eI3WGX7j8Ts";
 let tabName = "Sheet1";
 let opensheet_url = `https://opensheet.elk.sh/${sheetID}/${tabName}`;
 let myData = [];
@@ -24,10 +24,12 @@ let shapeType;
 let radius = 20;
 let yourName = '';
 
-let sourceSerif;
+let Plakat;
+let SourceSans;
 
 function preload(){
-sourceSerif = loadFont("SourceSerif4_18pt-Regular.ttf");
+Plakat = loadFont("GTFPlakatGroteskTRIAL-Regular.otf");
+SourceSans = loadFont("SourceSansPro-Bold.ttf");
 }
 
 function setup() {
@@ -68,6 +70,20 @@ function gotData(data) {
     indexSlider.changed(makePackage);
     indexSlider.parent(sliderSection);
     indexSlider.class("indexSlider");
+
+    // let dropdown = createDiv();
+    // dropdown.parent(controls);
+    // //label
+    // dropdown.class("slidersection");
+    // let modelLabel = createElement('h6', "YOUR BOARD MODEL");
+    // modelLabel.parent(dropdown);
+    // mySelect = createSelect();
+    // mySelect.option('red');
+    // mySelect.option('green');
+    // mySelect.option('blue');
+    // mySelect.option('yellow');
+    // mySelect.parent(dropdown);
+    // mySelect.class("indexSlider");
   
     let buttonSection = createDiv();
     buttonSection.parent(controls);
@@ -120,41 +136,41 @@ function makePackage() {
   
   
 
-  let brandName = "ARDUINO BOARD"
+  let brandName = "ARDUINO BOARD";
   noStroke();
 
   push()
   fill(strokeColor)
   rect(0, width, width, height - width);
-  fill(255); 
-  textFont(sourceSerif);
-  textSize(60)
-  text(yourName, width / 10-20, height - 90);
+  fill(color("#FEFBF2"), 95); 
+  textFont(Plakat);
+  textSize(56)
+  text(yourName, 40, height - 160);
   pop()
 
   push()
   //family name and variant
-  textFont('Source Code Pro');
+  textFont(SourceSans);
   fill(datapoint.bgColor)
-  textSize(20);
-  text(brandName, width - textWidth(brandName) - textWidth(brandName)/2, height - 90)
-  highlightBox(width - textWidth(brandName) - textWidth(brandName)/2, height - 150, datapoint.bgColor, strokeColor, datapoint.FORM, datapoint.type);
+  textSize(21);
+  text(brandName, width - textWidth(brandName) - textWidth(brandName)/2 + 15, height - 45)
+  highlightBox(width - textWidth(brandName) - textWidth(brandName)/2 +15, height - 100, datapoint.bgColor, strokeColor, datapoint.FORM, datapoint.type);
   pop()
 
 }
 
-function highlightBox(x, y, c1, c2, name, famName) {
+function highlightBox(x, y, c1, c2, famName, modelName) {
   let padding = 15; 
-  let boxWidth = textWidth(name) + 2 * padding;
+  let boxWidth = textWidth(famName) + 2 * padding;
   let boxHeight = 2 * padding;
   // Draw the highlight box behind the text
-  fill(255); 
-  text(famName, x+padding + boxWidth, y+padding*1.5)
+  fill(color("#FEFBF2"), 95); 
+  text(modelName, x+padding + boxWidth, y+padding*1.5)
   fill(c1); 
   noStroke();
   rect(x, y, boxWidth,  boxHeight);
   fill(c2);
-  text(name, x+padding, y+padding*1.5);
+  text(famName, x+padding, y+padding*1.5);
 }
 
 function nameLabel() {
