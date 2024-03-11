@@ -9,6 +9,9 @@ let xMultiplier;
 let qVertex; //vertex 
 let newqVertex; //vertex
 let nextPoint;
+let pinChange;
+let weightChange;
+let boardName;
 
 // save your sheet ID and name of the tab as variables for use
 let sheetID = "1dCAamYNmoavU6fJ5kLlNo_z2a2FApXb_eI3WGX7j8Ts";
@@ -48,11 +51,12 @@ function gotData(data) {
     myData = data;
 
     let controls = select(".controls");
+    let containerOne = select(".name-generate");
     let inputSection = createDiv();
     // Create a label for the input field
     let label = createElement('h6',"YOUR NAME");
     label.parent(inputSection);
-    inputSection.parent(controls)
+    inputSection.parent(containerOne);
    
     inputSection.class("inputSection");
     textInput = createInput(" ");
@@ -60,16 +64,70 @@ function gotData(data) {
     textInput.parent(inputSection);
     textInput.class("textInput");
 
+    let buttonSection = createDiv();
+    buttonSection.parent(containerOne);
+    buttonSection.class("buttonSection");
+
+    let buttonLabel = createElement('h6', 'YOUR DESIGN')
+    buttonLabel.parent(buttonSection);
+    generateButton = createButton('Create Package');
+    generateButton.mousePressed(makePackage);
+    generateButton.parent(buttonSection);
+
     let sliderSection = createDiv();
     sliderSection.parent(controls)
     // sliderSection
     sliderSection.class("sliderSection")
-    indexLabel = createElement('h6', "YOUR BOARD MODEL")
+   
+    indexLabel = createDiv("YOUR BOARD MODEL → " );
     indexLabel.parent(sliderSection);
+    indexLabel.class('sliderIndex');
+    boardName = createElement('h6');
+    boardName.class('dynamicVal');
+    boardName.parent(indexLabel);
+  
     indexSlider = createSlider(0, 14, 1);
     indexSlider.changed(makePackage);
     indexSlider.parent(sliderSection);
     indexSlider.class("indexSlider");
+
+    let specs = createDiv();
+    specs.parent(controls);
+    specs.style('display', 'flex');
+    specs.style('flex-direction', 'row');
+    specs.style('gap', '2em');
+
+    let pinSection = createDiv();
+    pinSection.parent(specs);
+    pinSection.style('display', 'flex');
+    pinSection.style('flex-direction', 'row');
+    pinSection.style('gap', '0.4em');
+    let pinLabel = createElement('h6', 'Digital I/O Pins → ');
+    pinLabel.parent(pinSection);
+    
+    pinCount = createDiv();
+ 
+    pinChange = createElement('h6');
+    pinChange.parent(pinCount);
+    pinChange.class('dynamicVal');
+    pinCount.parent(pinSection);
+
+
+    let weightSection = createDiv();
+    weightSection.parent(specs);
+    weightSection.style('display', 'flex');
+    weightSection.style('flex-direction', 'row');
+    weightSection.style('gap', '0.4em');
+    let weightLabel = createElement('h6', 'Weight (in grams) → ');
+    weightLabel.parent(weightSection);
+    
+    let weightCount = createDiv();
+ 
+    weightChange = createElement('h6');
+    weightChange.parent(weightCount);
+    weightChange.class('dynamicVal');
+    weightCount.parent(weightSection);
+
 
     // let dropdown = createDiv();
     // dropdown.parent(controls);
@@ -85,16 +143,6 @@ function gotData(data) {
     // mySelect.parent(dropdown);
     // mySelect.class("indexSlider");
   
-    let buttonSection = createDiv();
-    buttonSection.parent(controls);
-    buttonSection.class("buttonSection");
-
-    let buttonLabel = createElement('h6', 'YOUR DESIGN')
-    buttonLabel.parent(buttonSection);
-    generateButton = createButton('GENERATE');
-    generateButton.mousePressed(makePackage);
-    generateButton.parent(buttonSection);
-    generateButton.class("buttonGen");
 
      //onLoad
      push()
@@ -116,25 +164,24 @@ function gotData(data) {
 function makePackage() {
   console.log(myData);
   let datapoint = myData[indexSlider.value()];
-  console.log(datapoint);
+  pinChange.html(datapoint.PINS);
+  weightChange.html(datapoint.WEIGHT);
+  boardName.html(datapoint.FORM + " " + datapoint.type);
   // let pins = floor(map(datapoint.PINS, 8, 76, 10, 30));
   let pins = floor(mapExp(datapoint.PINS, 8, 76, 10, 40));
   let strokeColor = datapoint.strokeColor;
-  thickness = map(datapoint.WEIGHT, 5, 54, 2, 12);
+  thickness = map(datapoint.WEIGHT, 5, 48, 2, 12);
   shapeType = datapoint.shape;
   strokeWeight(thickness);
   background(datapoint.bgColor);
   stroke(color(datapoint.strokeColor));
-  
-  
   
   for(let i = 0; i<pins;i++){
   package()
   quadPoints(arr, roundedness, strokeColor);
   arr.splice(0, arr.length);
   }
-  
-  
+
 
   let brandName = "ARDUINO BOARD";
   noStroke();
@@ -176,8 +223,13 @@ function highlightBox(x, y, c1, c2, famName, modelName) {
 function nameLabel() {
   yourName = this.value() + "'s";
   console.log(yourName);
-  makePackage()
+  makePackage();
   return yourName 
+}
+
+function changePin() {
+  pinCount = createElement("h4", " ");
+  pinCount = createElement("h4", myData[indexSlider.value()].PINS);
 }
 
 //this is the one that will complete one shape

@@ -4,6 +4,7 @@ html, body, body *{
 }
 
 canvas {
+scale: 0.8em;
 box-shadow:#e1dadf;
 background: var(--color-body-text);
 }
@@ -11,6 +12,11 @@ background: var(--color-body-text);
 @font-face {
   font-family: 'Source-Serif-Pro' ;
   src: url("SourceSerif4-VariableFont_opsz,wght.ttf");
+}
+
+@font-face{
+  font-family: 'Source-Sans-Pro';
+  src: url("SourceSansPro-Bold.ttf")
 }
 
 :root {
@@ -50,6 +56,7 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
+  scale: clamp(0.6, 1, 1.2);
 }
 
 body{
@@ -61,7 +68,6 @@ body{
   width: 100vw;
   min-width: 50vw;
   font-size: var(--font-size-body);
-  overflow: hidden;
 }
 
 
@@ -98,6 +104,13 @@ h3{
   font-weight: 400;
 }
 
+h4{
+  font-size: var(--font-size-body-larger);
+  font-family: Source-Serif-Pro;
+  font-weight: 600;
+  margin: none;
+}
+
 h5{
   font-size: var(--font-size-body-medium);
   line-height: 130%;
@@ -117,30 +130,36 @@ h5{
   font-family: Source-Serif-Pro;
 }
 
-h6{
+.pinClass{
+  display: flex;
+  flex-direction: row;
+  font-size: var(--font-size-body-larger);
+  height: var(--font-size-button-medium);
+  padding: 0;
+}
+
+.sliderIndex, h6{
  color:var(--color-body-text);
  font-size: var(--font-size-body-medium);
  font-family: Source-Serif-Pro;
  font-weight: 400;
+ height: 1em;
  margin-bottom: 0.8rem;
 }
 
-.textInput{
-  border: none;
-  outline: none;
-  background: none;
-  padding: 0.8em;
-  border: 2px solid;
-  border-color: var(--color-body-text);
-  color: var(--color-body-text);
-  height: var(--font-size-button-medium);
-  font-family: Origin;
-  font-weight: 600;
-  letter-spacing: 1%;
-  font-size: var(--font-size-button-large);
+.sliderIndex{
+  display: flex;
+  flex-direction: row;
+  gap: 0.4em;
+  width: 90%;
 }
 
-.inputSection{
+.dynamicVal{
+color: #FF6542;
+font-family: Source-Serif-Pro;
+}
+
+.pinCounter{
   display: flex;
   flex-direction: column;
 }
@@ -152,7 +171,6 @@ h6{
 }
 
 .indexSlider {
-  -webkit-appearance: none; 
    height: var(--font-size-button-medium);
    appearance: none;
    border: 2px solid;
@@ -161,7 +179,6 @@ h6{
 
 
  .indexSlider::-webkit-slider-thumb {
-  -webkit-appearance: none; 
   appearance: none;
   background:#201E1F;
   width: var(--font-size-body-tiny);
@@ -174,29 +191,59 @@ h6{
   transition-duration: 0.5s;
 }
 
+
+.name-generate{
+  display: flex;
+  flex-direction: row;
+  gap: calc(30vw/10);
+  font-size: var(--font-size-button-large);
+}
+
+
+.textInput{
+  width: 12em;
+  height: 2.4em;
+  padding-block: 0px;
+  padding-inline: 0px;
+  outline: none;
+  background: none;
+  border: none;
+  outline: 2px solid var(--color-body-text);
+  color: #FF6542;
+  font-family: Source-Serif-Pro;
+  letter-spacing: 1%;
+  font-size: var(--font-size-button-large);
+}
+
+.inputSection{
+  display: flex;
+  flex-direction: column;
+}
+
 .buttonSection{
   display:flex;
   flex-direction: column;
 }
 
-.buttonGen{
+button{
   border: none;
-  outline: none;
+  margin: 0px;
+  font-size: var(--font-size-button-large);
   background: none;
-  width: 10em;
+  width: 8em;
+  height: 2.4em;
   cursor: pointer;
-  padding: 0.8em;
-  border: 2px solid;
-  border-color: #201E1F;
-  color: var(--color-body-text);
+  outline: 2px solid var(--color-body-text);
   font-weight: 400;
   letter-spacing: 1%;
-  font-size: var(--font-size-button-large);
-}
-
-.buttonGen:hover{
   background: #201E1F;
-  color: var(--color-bg);
-  transition-duration: 0.5s;
+  color: white;
+  transition-duration: 0.2s;
 }
 
+button:hover{
+  outline: 2px solid var(--color-body-text);
+  border: none;
+  color: var(--color-body-text);
+  background: white;
+}
